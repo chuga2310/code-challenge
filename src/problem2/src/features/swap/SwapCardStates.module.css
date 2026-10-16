@@ -1,0 +1,101 @@
+.skeleton {
+  display: grid;
+  gap: 10px;
+  padding: 24px 20px 24px;
+}
+
+.leg {
+  display: grid;
+  gap: 12px;
+  padding-block: 20px 22px;
+}
+
+.leg + .leg {
+  border-block-start: 1px solid var(--line);
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bone {
+  display: block;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.bone[data-shape='title'] {
+  inline-size: 72px;
+  block-size: 26px;
+}
+
+.bone[data-shape='line'] {
+  inline-size: 62%;
+  block-size: 14px;
+  margin-block-end: 10px;
+}
+
+.bone[data-shape='label'] {
+  inline-size: 64px;
+  block-size: 14px;
+}
+
+.bone[data-shape='amount'] {
+  inline-size: 45%;
+  block-size: 36px;
+}
+
+.bone[data-shape='pill'] {
+  inline-size: 104px;
+  block-size: 40px;
+  border-radius: var(--radius-pill);
+}
+
+.bone[data-shape='button'] {
+  block-size: 52px;
+  margin-block-start: 28px;
+  border-radius: var(--radius-md);
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.error {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 48px 28px 28px;
+  text-align: center;
+}
+
+.error > button {
+  justify-self: stretch;
+  margin-block-start: 18px;
+}
+
+.errorIcon {
+  display: grid;
+  place-items: center;
+  inline-size: 48px;
+  block-size: 48px;
+  border-radius: var(--radius-pill);
+  background: var(--attention-soft);
+  color: var(--attention);
+}
+
+.errorTitle {
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.errorText {
+  max-inline-size: 34ch;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}

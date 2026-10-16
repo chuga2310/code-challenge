@@ -1,0 +1,35 @@
+{
+  "name": "99tech-code-challenge",
+  "private": true,
+  "description": "99Tech code challenge — Frontend track (problems 1–3)",
+  "workspaces": [
+    "src/problem1",
+    "src/problem2",
+    "src/problem3"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w src/problem2",
+    "build": "npm run build -w src/problem2",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "@vitest/coverage-v8": "^5.0.5",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.2"
+  }
+}

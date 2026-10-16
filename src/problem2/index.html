@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Swap between tokens at USD-derived exchange rates." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <!-- Price feed is fetched in CORS mode; icons are plain <img> (no-cors), so only the feed gets crossorigin. -->
+    <link rel="preconnect" href="https://interview.switcheo.com" crossorigin />
+    <link rel="preconnect" href="https://raw.githubusercontent.com" />
+    <title>Fancy Form — Token Swap</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./src/main.tsx"></script>
+  </body>
+</html>

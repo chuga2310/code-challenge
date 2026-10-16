@@ -1,0 +1,199 @@
+/* A "leg" of the swap: a region of the card, not a card inside a card. Focus lifts it slightly. */
+.field {
+  display: grid;
+  gap: 6px;
+  padding: 16px 20px 14px;
+  border-radius: var(--radius-md);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.field:focus-within {
+  background: var(--surface-raised);
+}
+
+/* The input has no ring of its own; the whole leg shows focus instead. */
+.field:has(.input:focus-visible) {
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.field[data-invalid]:has(.input:focus-visible) {
+  box-shadow: inset 0 0 0 1px var(--attention);
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.875rem;
+}
+
+.label {
+  font-weight: 550;
+  color: var(--ink-muted);
+}
+
+.balance {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--ink-muted);
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.max {
+  padding: 1px 8px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 0.75rem;
+  font-weight: 650;
+  line-height: 1.5;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.max:hover:not(:disabled) {
+  background: color-mix(in oklch, var(--accent-soft), var(--accent) 12%);
+}
+
+.max:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input {
+  flex: 1;
+  /* Inputs have an intrinsic width (size=20); without this the leg can't shrink below it. */
+  inline-size: 100%;
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  transition: font-size var(--dur-fast) var(--ease-out);
+}
+
+.input[data-length='long'] {
+  font-size: 1.5rem;
+}
+
+.input[data-length='longer'] {
+  font-size: 1.25rem;
+}
+
+.input::placeholder {
+  color: var(--ink-faint);
+  opacity: 1;
+}
+
+.input:focus-visible {
+  box-shadow: none;
+}
+
+.input:read-only {
+  cursor: default;
+  color: var(--ink-muted);
+}
+
+.field[data-invalid] .input {
+  color: var(--attention);
+}
+
+.tokenButton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  min-block-size: 40px;
+  padding: 6px 10px 6px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-weight: 600;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.tokenButton:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--surface-hover);
+}
+
+.tokenButton:disabled {
+  cursor: default;
+}
+
+.tokenButton[data-empty] {
+  padding-inline-start: 14px;
+  border-color: transparent;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.tokenButton[data-empty]:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.symbol {
+  white-space: nowrap;
+}
+
+.chevron {
+  color: var(--ink-muted);
+}
+
+.tokenButton[data-empty] .chevron {
+  color: inherit;
+}
+
+.fiat {
+  min-block-size: 1lh;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+/* Empty live region: cancel the grid gap it would otherwise add. */
+.errorRegion:empty {
+  margin-block-start: -6px;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--attention);
+}
+
+.error svg {
+  flex: none;
+}
+
+@media (width < 420px) {
+  .field {
+    padding-inline: 14px;
+  }
+
+  .input {
+    font-size: 1.75rem;
+  }
+}

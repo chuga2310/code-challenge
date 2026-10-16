@@ -1,0 +1,180 @@
+.card {
+  position: relative;
+  inline-size: 100%;
+  max-inline-size: 440px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding: 8px 8px 16px;
+}
+
+.header {
+  display: grid;
+  gap: 2px;
+  padding: 16px 20px 4px;
+}
+
+.title {
+  font-size: 1.375rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+/* Focus target only (tabIndex -1), not a control: no ring. */
+.title:focus {
+  box-shadow: none;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+
+.legs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Hairline between the legs; the flip button sits on it. */
+.divider {
+  position: relative;
+  z-index: var(--z-raised);
+  block-size: 1px;
+  margin-inline: 20px;
+  background: var(--line);
+}
+
+.flip {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  display: grid;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink-muted);
+  translate: -50% -50%;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.flip svg {
+  rotate: calc(var(--turns, 0) * 180deg);
+  transition: rotate var(--dur-base) var(--ease-out);
+}
+
+.flip:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--surface-hover);
+  color: var(--ink);
+}
+
+.flip:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.footer {
+  display: grid;
+  padding: 4px 12px 0;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-block-size: 52px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 1rem;
+  font-weight: 650;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    scale var(--dur-fast) var(--ease-out);
+}
+
+.submit:hover:not([aria-disabled='true']) {
+  background: var(--accent-hover);
+}
+
+.submit:active:not([aria-disabled='true']) {
+  scale: 0.985;
+}
+
+/* Blocked by a validation issue: neutral, so the label carries the message. */
+.submit[aria-disabled='true']:not([data-pending]) {
+  cursor: not-allowed;
+  background: var(--surface-sunken);
+  color: var(--ink-muted);
+}
+
+.submit[data-pending] {
+  cursor: progress;
+}
+
+/* The live region stays mounted (and visible) so its updates are announced; it is 0px tall when empty. */
+.success,
+.failure {
+  display: flex;
+  margin-block-start: 12px;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  animation: status-in var(--dur-base) var(--ease-out);
+}
+
+.success svg,
+.failure svg {
+  flex: none;
+  margin-block-start: 2px;
+}
+
+.success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.failure {
+  background: var(--attention-soft);
+  color: var(--attention);
+}
+
+@keyframes status-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (width < 420px) {
+  .form {
+    padding-inline: 4px;
+  }
+
+  .header {
+    padding-inline: 14px;
+  }
+
+  .footer {
+    padding-inline: 10px;
+  }
+}

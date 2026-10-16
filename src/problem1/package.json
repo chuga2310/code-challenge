@@ -1,0 +1,13 @@
+{
+  "name": "problem1-sum-to-n",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Three ways to sum to n (JavaScript)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "bench": "node bench.js",
+    "typecheck": "tsc -p jsconfig.json",
+    "lint": "eslint ."
+  }
+}

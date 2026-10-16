@@ -1,0 +1,132 @@
+/*
+ * Design tokens. Restrained palette: tinted graphite neutrals plus a single vermilion
+ * accent for primary actions and selection. Validation uses amber, so "needs attention"
+ * never reads as brand colour (or as a red "sell"). Dark is the default; light follows
+ * the OS setting via light-dark().
+ */
+:root {
+  color-scheme: dark light;
+
+  --hue: 32;
+
+  --bg: light-dark(oklch(0.968 0.0025 var(--hue)), oklch(0.155 0.006 var(--hue)));
+  --surface: light-dark(oklch(1 0 0), oklch(0.2 0.008 var(--hue)));
+  --surface-raised: light-dark(oklch(0.975 0.004 var(--hue)), oklch(0.245 0.01 var(--hue)));
+  --surface-sunken: light-dark(oklch(0.94 0.005 var(--hue)), oklch(0.17 0.007 var(--hue)));
+  --surface-hover: light-dark(oklch(0.955 0.006 var(--hue)), oklch(0.27 0.011 var(--hue)));
+
+  --ink: light-dark(oklch(0.21 0.012 var(--hue)), oklch(0.95 0.005 var(--hue)));
+  --ink-muted: light-dark(oklch(0.47 0.014 var(--hue)), oklch(0.73 0.012 var(--hue)));
+  --ink-faint: light-dark(oklch(0.52 0.012 var(--hue)), oklch(0.66 0.01 var(--hue)));
+
+  --line: light-dark(oklch(0.9 0.006 var(--hue)), oklch(0.3 0.011 var(--hue)));
+  --line-strong: light-dark(oklch(0.82 0.008 var(--hue)), oklch(0.4 0.012 var(--hue)));
+
+  --accent: light-dark(oklch(0.585 0.2 var(--hue)), oklch(0.7 0.185 var(--hue)));
+  --accent-hover: light-dark(oklch(0.53 0.19 var(--hue)), oklch(0.75 0.17 var(--hue)));
+  --accent-ink: light-dark(oklch(1 0 0), oklch(0.18 0.03 var(--hue)));
+  --accent-text: light-dark(oklch(0.53 0.19 var(--hue)), oklch(0.77 0.15 var(--hue)));
+  --accent-soft: light-dark(oklch(0.585 0.2 var(--hue) / 0.1), oklch(0.7 0.185 var(--hue) / 0.14));
+
+  --attention: light-dark(oklch(0.52 0.12 68), oklch(0.83 0.14 80));
+  --attention-soft: light-dark(oklch(0.75 0.15 75 / 0.16), oklch(0.83 0.14 80 / 0.12));
+  --success: light-dark(oklch(0.5 0.12 155), oklch(0.8 0.14 155));
+  --success-soft: light-dark(oklch(0.6 0.13 155 / 0.12), oklch(0.8 0.14 155 / 0.12));
+
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+  --shadow-card:
+    0 1px 0 light-dark(oklch(1 0 0), oklch(1 0 0 / 0.04)) inset,
+    0 24px 48px -24px light-dark(oklch(0.3 0.02 var(--hue) / 0.18), oklch(0 0 0 / 0.55));
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --font-sans: 'IBM Plex Sans Variable', 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1); /* ease-out-quart */
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+
+  /* Semantic stacking: in-card layer → sheet. */
+  --z-raised: 1;
+  --z-sheet: 10;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-block-size: 100dvh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* The transparent outline is invisible normally but becomes the ring in forced-colors
+   mode (Windows High Contrast), which drops box-shadows. */
+:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
